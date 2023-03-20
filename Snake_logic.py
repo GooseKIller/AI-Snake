@@ -52,40 +52,49 @@ class Snake:
         :return:
         """
 
-        vision = []
+        vision_distanse = []
+        vision_object = []
         # up
         up = self.look_direction([-1, 0])
-        vision += up
+        vision_distanse += [up[1]]
+        vision_object += [up[0]]
 
         # right up
         up_r = self.look_direction([-1, 1])
-        vision += up_r
+        vision_distanse += [up_r[1]]
+        vision_object += [up_r[0]]
 
         # right
         right = self.look_direction([0, 1])
-        vision += right
+        vision_distanse += [right[1]]
+        vision_object += [right[0]]
 
         # down right
         down_r = self.look_direction([+1, +1])
-        vision += down_r
+        vision_distanse += [down_r[1]]
+        vision_object += [down_r[0]]
 
         # down
         down = self.look_direction([+1, 0])
-        vision += down
+        vision_distanse += [down[1]]
+        vision_object += [down[0]]
 
         # down left
         down_l = self.look_direction([+1, -1])
-        vision += down_l
+        vision_distanse += [down_l[1]]
+        vision_object += [down_l[0]]
 
         # left
         left = self.look_direction([0, -1])
-        vision += left
+        vision_distanse += [left[1]]
+        vision_object += [left[0]]
 
         # left up
         up_l = self.look_direction([-1, -1])
-        vision += up_l
+        vision_distanse += [up_l[1]]
+        vision_object += [up_l[0]]
 
-        return vision
+        return vision_distanse + vision_object
 
     def update_units(self):
         """
@@ -127,6 +136,16 @@ class Snake:
         self.snake.append((self.x, self.y))
         self.snake = self.snake[-self.length_snake:]
         self.steps += 1
+        self.update_units()
+
+    def apple_move(self, dx=0, dy=0):
+        def normalize_this(x, y):
+            x = (self.map_size + x) % self.map_size
+            y = (self.map_size + y) % self.map_size
+            return x, y
+
+        x, y = normalize_this(self.apple[0] - dx, self.apple[1] + dy)
+        self.apple = (x, y)
         self.update_units()
 
     def is_lose(self):

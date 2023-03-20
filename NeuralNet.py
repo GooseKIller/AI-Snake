@@ -59,12 +59,12 @@ class NeuralNet:
 
         return new_net
 
-    def net_to_table(self):
+    def net_to_table(self, path="data.csv"):
         hiden_input_arr = self.hiden_input_weights.toArray()
         hiden_hiden_arr = self.hiden_hiden_weights.toArray()
         output_hiden_arr = self.output_hiden_weights.toArray()
         table = [hiden_input_arr, hiden_hiden_arr, output_hiden_arr]
-        with open("data.csv", 'w') as file:
+        with open(path, 'w') as file:
             writer = csv.writer(file)
             writer.writerows(table)
         return table

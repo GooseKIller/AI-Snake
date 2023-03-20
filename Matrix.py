@@ -122,9 +122,9 @@ class Matrix:
     def mutate(self, mutation_rate):
         for i in range(self.columns):
             for j in range(self.rows):
-                rand = random.uniform(0, 1)
+                rand = random.uniform(-1, 1)
                 if rand < mutation_rate:
-                    val = random.gauss()
+                    val = random.gauss(mu=0.0, sigma=1)
                     self.matrix[i][j] += val / 5
 
                     if self.matrix[i][j] > 1:
