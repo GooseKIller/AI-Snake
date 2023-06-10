@@ -23,7 +23,8 @@ if __name__ == "__main__":
     screen.fill((0, 155, 0))
     clock = pygame.time.Clock()
     snake = Snake(map_size=res)
-
+    
+    # testing visualizatin and game logic
     while not snake.is_lose():
         draw_board(screen, snake.map)
         event = pygame.event.poll()
