@@ -3,9 +3,8 @@ import numpy as np
 
 
 class SnakeNNet(torch.nn.Module):
-    def __init__(self, PATH="SnakeAI.pt"):
+    def __init__(self):
         super(SnakeNNet, self).__init__()
-        self.PATH = PATH
 
         self.act = torch.nn.ReLU()
         self.fc1 = torch.nn.Linear(16, 64)
